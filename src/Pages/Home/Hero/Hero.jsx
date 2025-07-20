@@ -12,8 +12,8 @@ const Hero = () => {
   // Animation variants for subtle inward jumping
   const logoVariants = {
     animate: {
-      x: [0, -3, 0], // Reduced movement for subtler effect
-      y: [0, -3, 0],
+      x: [0, -5, 0], // Reduced movement for subtler effect
+      y: [0, -5, 0],
       transition: {
         repeat: Infinity,
         duration: 1.5, // Slightly faster for a smoother feel
@@ -32,7 +32,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="min-h-screen flex flex-col lg:flex-row items-center justify-between py-10 pt-24 bg-gradient-to-r from-pink-100 via-yellow-100 to-blue-100 px-[2%] lg:px-[12%] space-y-10">
+    <section className="min-h-screen flex flex-col lg:flex-row items-center justify-between py-10 pt-24 bg-gradient-to-r from-pink-100 via-yellow-50 to-blue-100 px-[2%] lg:px-[12%] space-y-10">
       {/* Left Content */}
       <div className="text-center lg:text-left space-y-4">
         <h3 className="text-2xl md:text-4xl lg:text-6xl font-bold text-[#B3A206]">

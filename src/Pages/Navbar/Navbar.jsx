@@ -1,79 +1,148 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
+import Avatar from "../../assets/50426.jpg";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname.toLowerCase();
+
+  const navItems = ["Home", "About", "Skills", "Projects", "Contact"];
+
+  const linkVariants = {
+    hover: {
+      scale: 1.05,
+      color: "#333",
+      transition: { duration: 0.2 },
+    },
+  };
+
   return (
-    <div className="navbar bg-base-100 shadow-sm">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {" "}
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
-            </svg>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="fixed top-0 w-full bg-white z-10 shadow-sm"
+    >
+      <div className="px-[2%] lg:px-[12%] flex justify-between items-center py-4 md:py-6">
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <img src={Avatar} alt="Avatar" className="h-12 rounded-full" />
+          <span className="text-4xl font-bold text-secondary">SAMIUl.</span>
+        </div>
+
+        {/* Desktop Nav Links */}
+        <div className="hidden md:flex flex-1 justify-center">
+          <ul className="flex space-x-6">
+            {navItems.map((item) => {
+              const id = item.toLowerCase();
+              const isActive = currentPath.includes(id);
+
+              return (
+                <motion.li
+                  key={item}
+                  variants={linkVariants}
+                  whileHover="hover"
+                  className="relative group"
+                >
+                  <Link
+                    to={`/${id}`}
+                    className={`text-secondary font-medium px-2 py-1 transition duration-200 ${
+                      isActive ? "text-primary" : "hover:text-gray-600"
+                    }`}
+                  >
+                    {item}
+                    <span
+                      className={`absolute left-1/2 -bottom-8.5 transform -translate-x-1/2 h-[3px] w-6 rounded-full transition-all duration-300
+                        ${
+                          isActive
+                            ? "bg-primary scale-100"
+                            : "bg-primary scale-0 group-hover:scale-100"
+                        }`}
+                    ></span>
+                  </Link>
+                </motion.li>
+              );
+            })}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+
+        {/* Resume Button */}
+        <div className="hidden md:block">
+          <motion.a
+            href="/path/to/your-resume.pdf"
+            target="_blank"
+            className="text-white text-lg bg-primary px-4 py-2 rounded-full hover:bg-[#27ae60] transition duration-200 font-medium flex items-center"
+            whileHover={{ scale: 1.05 }}
+          >
+            Resume
+            <span className="ml-2 text-lg">↓</span>
+          </motion.a>
+        </div>
+
+        {/* Mobile Menu Icon */}
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)} className="text-gray-800">
+            {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+          </button>
+        </div>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
-        </ul>
-      </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
-      </div>
-    </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="md:hidden bg-white p-6 shadow-sm"
+        >
+          <ul className="flex flex-col space-y-3">
+            {navItems.map((item) => {
+              const id = item.toLowerCase();
+              const isActive = currentPath.includes(id);
+
+              return (
+                <motion.li
+                  key={item}
+                  variants={linkVariants}
+                  whileHover="hover"
+                  onClick={() => setIsOpen(false)}
+                  className="relative group"
+                >
+                  <Link
+                    to={`/${id}`}
+                    className={`text-gray-800 transition duration-200 text-base font-medium px-2 py-1 ${
+                      isActive ? "text-primary" : "hover:text-gray-600"
+                    }`}
+                  >
+                    {item}
+                    <span
+                      className={`absolute left-1/2 -bottom-1.5 transform -translate-x-1/2 h-[3px] w-6 rounded-full transition-all duration-300
+                        ${
+                          isActive
+                            ? "bg-primary scale-100"
+                            : "bg-primary scale-0 group-hover:scale-100"
+                        }`}
+                    ></span>
+                  </Link>
+                </motion.li>
+              );
+            })}
+
+            <motion.a
+              href="/path/to/your-resume.pdf"
+              target="_blank"
+              className="bg-brand-green text-white px-4 py-1.5 rounded-full hover:bg-green-600 transition duration-200 text-center text-sm flex items-center justify-center"
+              whileHover={{ scale: 1.05 }}
+            >
+              Resume
+              <span className="ml-1 text-xs">↓</span>
+            </motion.a>
+          </ul>
+        </motion.div>
+      )}
+    </motion.nav>
   );
 };
 

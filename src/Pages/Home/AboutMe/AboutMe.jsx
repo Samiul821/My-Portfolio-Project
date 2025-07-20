@@ -47,7 +47,7 @@ const AboutMe = () => {
       >
         {({ y, opacity }) => (
           <h1
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-center"
+            className="text-2xl text-primary sm:text-3xl md:text-4xl font-bold mb-2 text-center"
             style={{ transform: `translateY(${y}px)`, opacity }}
           >
             About Me

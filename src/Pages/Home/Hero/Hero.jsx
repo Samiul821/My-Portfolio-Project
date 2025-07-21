@@ -32,9 +32,9 @@ const Hero = () => {
   ];
 
   return (
-    <section className="min-h-screen flex flex-col lg:flex-row items-center justify-between py-10 pt-24 bg-gradient-to-r from-pink-100 via-yellow-50 to-blue-100 px-[2%] lg:px-[12%] space-y-10">
+    <section className="lg:min-h-screen md:h-[calc(80vh-80px)] flex flex-col md:flex-row items-center justify-between py-10 pt-24 bg-gradient-to-r from-pink-100 via-yellow-50 to-blue-100 px-[4%] lg:px-[12%] gap-10">
       {/* Left Content */}
-      <div className="text-center lg:text-left space-y-4">
+      <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
         <h3 className="text-2xl md:text-4xl lg:text-6xl font-bold text-[#B3A206]">
           Hello,
         </h3>
@@ -56,7 +56,7 @@ const Hero = () => {
           Hello! I am Samiul from Bangladesh. Passionate about building modern,
           clean, and scalable web applications.
         </p>
-        <div className="flex justify-center lg:justify-start">
+        <div className="flex justify-center md:justify-start">
           <button className="mt-4 px-6 py-3 bg-primary text-white font-medium rounded-full flex items-center gap-2 hover:bg-green-600 transition">
             Hire Me <FaArrowRight />
           </button>
@@ -64,67 +64,67 @@ const Hero = () => {
       </div>
 
       {/* Right Image */}
-      <div className="w-full md:w-1/2 relative flex justify-center mb-10 md:mb-0">
-        <div className="w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] xl:w-[600px] xl:h-[600px] rounded-full overflow-hidden bg-blue-300">
+      <div className="w-full md:w-1/2 flex justify-center items-center relative">
+        <div className="w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] xl:w-[600px] xl:h-[600px] rounded-full overflow-hidden bg-blue-300 relative">
           <img
             src={HeroImage}
             className="w-full h-full object-cover"
             alt="Profile"
           />
-
-          {/* Floating Logos Inside Image */}
-          {/* Top Left Logo */}
-          <motion.div
-            className="absolute top-[20%] left-[20%] transform -translate-x-1/2 -translate-y-1/2"
-            variants={logoVariants}
-            animate="animate"
-          >
-            <img
-              src={MonogoDbPng}
-              alt="MongoDB"
-              className="p-2 w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 bg-white rounded-xl shadow-lg"
-            />
-          </motion.div>
-
-          {/* Top Right Logo */}
-          <motion.div
-            className="absolute top-[20%] right-[20%] transform translate-x-1/2 -translate-y-1/2"
-            variants={logoVariants}
-            animate="animate"
-          >
-            <img
-              src={ExpressPng}
-              alt="Express"
-              className="p-2 w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 bg-white rounded-xl shadow-lg"
-            />
-          </motion.div>
-
-          {/* Bottom Right Logo */}
-          <motion.div
-            className="absolute bottom-[20%] right-[20%] transform translate-x-1/2 translate-y-1/2"
-            variants={logoVariants}
-            animate="animate"
-          >
-            <img
-              src={ReactPng}
-              alt="React"
-              className="p-2 w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 bg-white rounded-xl shadow-lg"
-            />
-          </motion.div>
-
-          {/* Bottom Left Logo */}
-          <motion.div
-            className="absolute bottom-[20%] left-[20%] transform -translate-x-1/2 translate-y-1/2"
-            variants={logoVariants}
-            animate="animate"
-          >
-            <img
-              src={NodePng}
-              alt="Node.js"
-              className="p-2 w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 bg-white rounded-xl shadow-lg"
-            />
-          </motion.div>
         </div>
+
+        {/* Floating Logos Inside Image */}
+        {/* Top Left Logo */}
+        <motion.div
+          className="absolute top-[20%] left-[20%] transform -translate-x-1/2 -translate-y-1/2"
+          variants={logoVariants}
+          animate="animate"
+        >
+          <img
+            src={MonogoDbPng}
+            alt="MongoDB"
+            className="p-2 w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 bg-white rounded-xl shadow-lg"
+          />
+        </motion.div>
+
+        {/* Top Right Logo */}
+        <motion.div
+          className="absolute top-[20%] right-[20%] transform translate-x-1/2 -translate-y-1/2"
+          variants={logoVariants}
+          animate="animate"
+        >
+          <img
+            src={ExpressPng}
+            alt="Express"
+            className="p-2 w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 bg-white rounded-xl shadow-lg"
+          />
+        </motion.div>
+
+        {/* Bottom Right Logo */}
+        <motion.div
+          className="absolute bottom-[20%] right-[20%] transform translate-x-1/2 translate-y-1/2"
+          variants={logoVariants}
+          animate="animate"
+        >
+          <img
+            src={ReactPng}
+            alt="React"
+            className="p-2 w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 bg-white rounded-xl shadow-lg"
+          />
+        </motion.div>
+
+        {/* Bottom Left Logo */}
+        <motion.div
+          className="absolute bottom-[20%] left-[20%] transform -translate-x-1/2 translate-y-1/2"
+          variants={logoVariants}
+          animate="animate"
+        >
+          <img
+            src={NodePng}
+            alt="Node.js"
+            className="p-2 w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 bg-white rounded-xl shadow-lg"
+          />
+        </motion.div>
       </div>
     </section>
   );

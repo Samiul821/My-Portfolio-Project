@@ -1,0 +1,59 @@
+[
+  {
+    "id": "1",
+    "name": "HostelBite - Hostel Meal & Admin Dashboard Web App",
+    "category": "Hostel Management",
+    "image": "https://i.ibb.co/bMqgHSxD/Screenshot-2025-07-21-162341.png",
+    "stack": [
+      "React",
+      "Express.js",
+      "MongoDB",
+      "Firebase Auth",
+      "Tailwind CSS"
+    ],
+    "features": [
+      "Food request system for users",
+      "Admin can add food and approve requests",
+      "User role management (admin/user)"
+    ],
+    "description": "HostelBite is a hostel management web app where users can request meals, interact through comments, and admins can manage menus, users, and permissions.",
+    "live": "https://hostelbite.web.app/",
+    "github": "https://github.com/Samiul821/HostelBite-Client",
+    "challenges": "Implementing request approval flow and role-based dashboard.",
+    "improvements": "Add notification system and real-time order tracking."
+  },
+  {
+    "id": "2",
+    "name": "ProdQuery - Ethical Product Awareness & Boycott Platform",
+    "category": "Social Awareness",
+    "image": "https://i.ibb.co/0pZH7C7Y/all-devices-black-2.png",
+    "stack": ["React", "Firebase Auth", "Tailwind", "Express.js", "MongoDB"],
+    "features": [
+      "Query-based boycott system",
+      "User voting & reports",
+      "Secure JWT protected routes"
+    ],
+    "description": "ProdQuery is a boycott-focused awareness platform where users can view, submit, and vote on product-related queries. It promotes transparency and encourages ethical consumer choices.",
+    "live": "https://prod-query-e68b6.web.app/",
+    "github": "https://github.com/Samiul821/ProdQuery-Project",
+    "challenges": "Building a dynamic reason-query system and token protection.",
+    "improvements": "Add public voting, comment section, and admin analytics."
+  },
+  {
+    "id": "3",
+    "name": "Green Circle - Sustainable E-commerce Platform for Eco Products",
+    "category": "E-commerce",
+    "image": "https://i.ibb.co/ym6DV6pq/all-devices-black-3.png",
+    "stack": ["React", "MongoDB", "Tailwind CSS", "Express.js"],
+    "features": [
+      "Eco-friendly product listing",
+      "Category & filtering support",
+      "User-friendly design and UX"
+    ],
+    "description": "Green Circle is an eco-friendly e-commerce platform that promotes sustainable products. It supports categories, filters, and smooth user experiences.",
+    "live": "https://green-circle-bdbd6.web.app/",
+    "github": "https://github.com/Samiul821/Green-Circle-Client",
+    "challenges": "Product category management and search filter.",
+    "improvements": "Add payment integration and product review system."
+  }
+]

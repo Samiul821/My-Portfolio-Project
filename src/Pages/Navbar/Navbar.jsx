@@ -44,7 +44,7 @@ const Navbar = () => {
     >
       <div className="px-[2%] lg:px-[12%] flex justify-between items-center py-4 lg:py-6">
         {/* Mobile Menu Icon */}
-        <div className="lg:hidden bg-primary pt-2 pb-1 px-2 rounded-lg">
+        <div className="md:hidden bg-primary pt-2 pb-1 px-2 rounded-lg">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="text-white cursor-pointer"
@@ -62,7 +62,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Nav Links */}
-        <div className="hidden lg:block lg:flex  flex-1 justify-center">
+        <div className="hidden md:block md:flex  flex-1 justify-center">
           <ul className="flex space-x-6">
             {navItems.map((item) => {
               const id = item.toLowerCase();

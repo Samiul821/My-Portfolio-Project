@@ -54,7 +54,11 @@ const onSubmit = (data) => {
 
 
   return (
-    <div className="py-12 sm:py-16 md:py-20 lg:py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-50 via-white to-white flex justify-center items-center px-[2%] sm:px-[4%] md:px-[8%] lg:px-[12%] overflow-hidden">
+    <div className="py-12 sm:py-16 md:py-20 lg:py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-50 via-white to-white  px-[2%] lg:px-[12%] overflow-hidden">
+
+
+      <h1 className="text-[22px] font-bold text-center text-primary md:text-[35px] lg:text-5xl mb-8">Let`s Talk</h1>
+
       <div className="w-full grid lg:grid-cols-3 gap-10">
         {/* Left: Contact Form */}
         <div className="lg:col-span-2 bg-white shadow-lg rounded-xl pt-[60px] pb-[30px] px-[25px] lg:px-[65px]">

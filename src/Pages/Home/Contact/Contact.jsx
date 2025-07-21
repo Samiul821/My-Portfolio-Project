@@ -61,7 +61,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="py-12 sm:py-16 md:py-20 lg:py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-50/50 via-white to-white px-[4%] sm:px-[8%] lg:px-[12%] overflow-hidden">
+    <div className="py-12 sm:py-16 md:py-20 lg:py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-50/50 via-white to-white px-[2%] lg:px-[12%] overflow-hidden">
       <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center text-primary mb-8 sm:mb-12 tracking-tight animate-[fadeIn_0.5s_ease-out_0.1s_both]">
         Let’s Talk
       </h1>

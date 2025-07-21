@@ -87,7 +87,7 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-r from-blue-50 via-pink-50 to-purple-100 px-[2%] lg:px-[12%] overflow-hidden">
+    <section id="skills" className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-r from-blue-50 via-pink-50 to-purple-100 px-[2%] lg:px-[12%] overflow-hidden">
       {/* Heading */}
       <motion.h1
         className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-primary"

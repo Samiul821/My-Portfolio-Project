@@ -100,7 +100,7 @@ const Navbar = () => {
         {/* Resume Button */}
         <div className="">
           <motion.a
-            href="/path/to/your-resume.pdf"
+            href="https://drive.google.com/file/d/1YqyzltnqPAfhxvNvDR7PGDWaKl9rWgBX/view?usp=sharing"
             target="_blank"
             className="text-white text-[14px] md:text-lg bg-primary px-4 py-2 rounded-full hover:bg-[#27ae60] transition font-medium flex items-center"
             whileHover={{ scale: 1.05 }}

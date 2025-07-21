@@ -17,7 +17,9 @@ const Footer = () => {
 
         {/* Center: Navigation */}
         <div className="space-y-3">
-          <h3 className="text-lg sm:text-xl font-semibold text-gray-700">Quick Links</h3>
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-700">
+            Quick Links
+          </h3>
           <ul className="space-y-2 text-sm sm:text-base">
             {[
               { href: "#about", label: "About Me" },
@@ -39,13 +41,31 @@ const Footer = () => {
 
         {/* Right: Socials */}
         <div className="space-y-3">
-          <h3 className="text-lg sm:text-xl font-semibold text-gray-700">Connect with Me</h3>
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-700">
+            Connect with Me
+          </h3>
           <div className="flex justify-center sm:justify-start gap-4 text-xl sm:text-2xl">
             {[
-              { href: "https://github.com/your-github", icon: <FaGithub />, label: "GitHub" },
-              { href: "https://linkedin.com/in/your-linkedin", icon: <FaLinkedin />, label: "LinkedIn" },
-              { href: "https://facebook.com/your-facebook", icon: <FaFacebook />, label: "Facebook" },
-              { href: "mailto:your@email.com", icon: <FaEnvelope />, label: "Email" },
+              {
+                href: "https://github.com/Samiul821",
+                icon: <FaGithub />,
+                label: "GitHub",
+              },
+              {
+                href: "https://www.linkedin.com/in/md-samiul-islam890",
+                icon: <FaLinkedin />,
+                label: "LinkedIn",
+              },
+              {
+                href: "https://www.facebook.com/smsamiul890",
+                icon: <FaFacebook />,
+                label: "Facebook",
+              },
+              {
+                href: "mailto:smsamiul821@gmail.com",
+                icon: <FaEnvelope />,
+                label: "Email",
+              },
             ].map((social) => (
               <a
                 key={social.href}

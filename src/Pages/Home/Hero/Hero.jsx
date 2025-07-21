@@ -1,5 +1,5 @@
 import React from "react";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
 import HeroImage from "../../../assets/image (9).png";
 import MonogoDbPng from "../../../assets/MongoDB.png";
@@ -32,7 +32,10 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="lg:min-h-screen md:h-[calc(80vh-80px)] flex flex-col md:flex-row items-center justify-between py-10 pt-24 bg-gradient-to-r from-pink-100 via-yellow-50 to-blue-100 px-[4%] lg:px-[12%] gap-10">
+    <section
+      id="home"
+      className="lg:min-h-screen md:h-[calc(80vh-80px)] flex flex-col md:flex-row items-center justify-between py-10 pt-24 bg-gradient-to-r from-pink-100 via-yellow-50 to-blue-100 px-[4%] lg:px-[12%] gap-10"
+    >
       {/* Left Content */}
       <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
         <h3 className="text-2xl md:text-4xl lg:text-6xl font-bold text-[#B3A206]">
@@ -56,6 +59,36 @@ const Hero = () => {
           Hello! I am Samiul from Bangladesh. Passionate about building modern,
           clean, and scalable web applications.
         </p>
+        {/* Social Media Icons */}
+        <div className="flex justify-center md:justify-start gap-4 animate-[fadeIn_0.5s_ease-out_0.5s_both]">
+          <a
+            href="https://github.com/Samiul821"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-2xl text-gray-600 hover:text-primary transition-all duration-200 transform hover:scale-110"
+            aria-label="Visit my GitHub profile"
+          >
+            <FaGithub />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/md-samiul-islam890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-2xl text-gray-600 hover:text-primary transition-all duration-200 transform hover:scale-110"
+            aria-label="Visit my LinkedIn profile"
+          >
+            <FaLinkedin />
+          </a>
+          <a
+            href="https://x.com/SmSamiul890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-2xl text-gray-600 hover:text-primary transition-all duration-200 transform hover:scale-110"
+            aria-label="Visit my Twitter profile"
+          >
+            <FaTwitter />
+          </a>
+        </div>
         <div className="flex justify-center md:justify-start">
           <button className="mt-4 px-6 py-3 bg-primary text-white font-medium rounded-full flex items-center gap-2 hover:bg-green-600 transition">
             Hire Me <FaArrowRight />

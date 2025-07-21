@@ -100,24 +100,27 @@ const AboutMe = () => {
           style={{ opacity: spring(1, { stiffness: 120, damping: 20 }) }}
         >
           {({ opacity }) => (
-            <div className="text-center lg:text-left space-y-4" style={{ opacity }}>
+            <div
+              className="text-center lg:text-left space-y-4"
+              style={{ opacity }}
+            >
               <p className="text-sm sm:text-base md:text-lg mb-4">
-                Hello! I’m Md Samiul Islam, a passionate MERN Stack Developer from
-                Bangladesh. My journey started with curiosity and has grown into a
-                deep love for crafting modern, efficient, and beautiful web
-                applications.
+                Hello! I’m Md Samiul Islam, a passionate MERN Stack Developer
+                from Bangladesh. My journey started with curiosity and has grown
+                into a deep love for crafting modern, efficient, and beautiful
+                web applications.
               </p>
               <p className="text-sm sm:text-base md:text-lg mb-4">
                 I specialize in building full-stack solutions using MongoDB,
-                Express, React, and Node.js. I enjoy solving problems, learning new
-                technologies, and turning creative ideas into reality through clean
-                and optimized code.
+                Express, React, and Node.js. I enjoy solving problems, learning
+                new technologies, and turning creative ideas into reality
+                through clean and optimized code.
               </p>
               <p className="text-sm sm:text-base md:text-lg mb-4">
                 Beyond coding, I’m interested in design, writing clean
-                documentation, and continuously improving user experiences. In my
-                free time, I love reading, playing sports, and reflecting on how I
-                can become better — as a developer and as a human being.
+                documentation, and continuously improving user experiences. In
+                my free time, I love reading, playing sports, and reflecting on
+                how I can become better — as a developer and as a human being.
               </p>
               <p className="text-sm sm:text-base md:text-lg font-semibold">
                 Let's build something amazing together!

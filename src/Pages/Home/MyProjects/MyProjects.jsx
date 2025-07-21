@@ -9,12 +9,16 @@ import Projects from "../../../../public/Projects.json";
 import line1 from "../../../assets/line-1.png";
 import line2 from "../../../assets/line-2.png";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
+import ProjectsModal from "./ProjectsModal";
 
 const MyProjects = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const paginationRef = useRef(null);
   const [swiper, setSwiper] = useState(null);
+  console.log("ProjectsModal:", ProjectsModal);
+
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     if (swiper && prevRef.current && nextRef.current && paginationRef.current) {
@@ -87,7 +91,10 @@ const MyProjects = () => {
                   />
                 </div>
                 <div className="mt-4 text-center flex flex-col justify-between flex-grow px-2">
-                  <h1 className="text-lg md:text-xl font-semibold hover:text-primary transition-colors duration-300">
+                  <h1
+                    onClick={() => setSelectedProject(project)}
+                    className="text-lg cursor-pointer md:text-xl font-semibold hover:text-primary transition-colors duration-300"
+                  >
                     {project.name}
                   </h1>
                   <p className="text-sm text-[#808080] mt-2">
@@ -124,6 +131,13 @@ const MyProjects = () => {
           className="swiper-pagination mt-6 flex justify-center gap-2"
         />
       </div>
+
+      {/* Projects Modal */}
+      <ProjectsModal
+        isOpen={!!selectedProject}
+        onClose={() => setSelectedProject(null)}
+        project={selectedProject}
+      />
     </div>
   );
 };

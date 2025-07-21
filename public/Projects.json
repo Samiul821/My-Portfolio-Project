@@ -17,7 +17,7 @@
       "User role management (admin/user)"
     ],
     "description": "HostelBite is a hostel management web app where users can request meals, interact through comments, and admins can manage menus, users, and permissions.",
-    "live": "https://hostelbite.web.app/",
+    "live": "https://hostelbite-8a374.web.app/",
     "github": "https://github.com/Samiul821/HostelBite-Client",
     "challenges": "Implementing request approval flow and role-based dashboard.",
     "improvements": "Add notification system and real-time order tracking."

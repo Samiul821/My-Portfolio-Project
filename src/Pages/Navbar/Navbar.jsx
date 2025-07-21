@@ -7,9 +7,20 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [loaded, setLoaded] = useState(false);
 
   const navItems = ["Home", "About", "Skills", "Projects", "Contact"];
 
+  // Scroll to top and clear hash on load
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top
+    if (window.location.hash) {
+      window.location.hash = ""; // Clear any URL hash
+    }
+    setLoaded(true); // Mark page as loaded
+  }, []);
+
+  // Handle scroll for navbar background
   useEffect(() => {
     const handleScroll = () => {
       setScrolling(window.scrollY > 20);
@@ -18,17 +29,22 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ✅ Detect which section is in view
+  // Detect which section is in view
   useEffect(() => {
+    if (!loaded) return; // Skip observer until page is loaded
+
     const sectionIds = navItems.map((item) => item.toLowerCase());
     const options = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.6, // 60% visible
+      threshold: 0.3, // 30% visibility
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
+        console.log(
+          `Intersecting: ${entry.target.id}, isIntersecting: ${entry.isIntersecting}`
+        );
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
         }
@@ -41,7 +57,7 @@ const Navbar = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [loaded]);
 
   const linkVariants = {
     hover: {

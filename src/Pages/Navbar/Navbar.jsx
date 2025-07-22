@@ -2,25 +2,21 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Avatar from "../../assets/50426.jpg";
+import { Link } from "react-scroll";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
-  const [loaded, setLoaded] = useState(false);
 
-  const navItems = ["Home", "About", "Skills", "Projects", "Contact"];
+  const navItems = [
+    { name: "Home", to: "home" },
+    { name: "About", to: "about" },
+    { name: "Skills", to: "skills" },
+    { name: "Projects", to: "projects" },
+    { name: "Contact", to: "contact" },
+  ];
 
-  // Scroll to top and clear hash on load
-  useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to top
-    if (window.location.hash) {
-      window.location.hash = ""; // Clear any URL hash
-    }
-    setLoaded(true); // Mark page as loaded
-  }, []);
-
-  // Handle scroll for navbar background
+  // Scroll background change
   useEffect(() => {
     const handleScroll = () => {
       setScrolling(window.scrollY > 20);
@@ -29,36 +25,18 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Detect which section is in view
+  // Prevent auto scroll to hash section
   useEffect(() => {
-    if (!loaded) return; // Skip observer until page is loaded
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
 
-    const sectionIds = navItems.map((item) => item.toLowerCase());
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.3, // 30% visibility
-    };
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 50);
+  }, []);
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        console.log(
-          `Intersecting: ${entry.target.id}, isIntersecting: ${entry.isIntersecting}`
-        );
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, options);
-
-    sectionIds.forEach((id) => {
-      const section = document.getElementById(id);
-      if (section) observer.observe(section);
-    });
-
-    return () => observer.disconnect();
-  }, [loaded]);
-
+  // Link hover animation
   const linkVariants = {
     hover: {
       scale: 1.05,
@@ -98,35 +76,21 @@ const Navbar = () => {
         {/* Desktop Nav Links */}
         <div className="hidden md:block md:flex flex-1 justify-center">
           <ul className="flex space-x-6">
-            {navItems.map((item) => {
-              const id = item.toLowerCase();
-              const isActive = activeSection === id;
-
-              return (
-                <motion.li
-                  key={item}
-                  variants={linkVariants}
-                  whileHover="hover"
-                  className="relative group"
+            {navItems.map(({ name, to }) => (
+              <motion.div key={name} variants={linkVariants} whileHover="hover">
+                <Link
+                  to={to}
+                  spy={true}
+                  smooth={true}
+                  offset={-250} // changed from -200 to -250
+                  duration={500}
+                  activeClass="text-primary border-b-2 border-primary pb-1"
+                  className="cursor-pointer hover:text-primary transition"
                 >
-                  <a
-                    href={`#${id}`}
-                    className={`font-medium px-2 py-1 transition duration-200 ${
-                      isActive
-                        ? "text-primary"
-                        : "text-secondary hover:text-primary"
-                    }`}
-                  >
-                    {item}
-                    <span
-                      className={`absolute left-1/2 -bottom-1.5 transform -translate-x-1/2 h-[3px] w-6 rounded-full bg-primary transition-all duration-300 ${
-                        isActive ? "scale-100" : "scale-0 group-hover:scale-100"
-                      }`}
-                    ></span>
-                  </a>
-                </motion.li>
-              );
-            })}
+                  {name}
+                </Link>
+              </motion.div>
+            ))}
           </ul>
         </div>
 
@@ -149,36 +113,24 @@ const Navbar = () => {
           className="lg:hidden bg-white p-6 shadow-sm"
         >
           <ul className="flex flex-col space-y-3">
-            {navItems.map((item) => {
-              const id = item.toLowerCase();
-              const isActive = activeSection === id;
-
-              return (
-                <motion.li
-                  key={item}
-                  variants={linkVariants}
-                  whileHover="hover"
-                  onClick={() => setIsOpen(false)}
-                  className="relative group"
-                >
-                  <a
-                    href={`#${id}`}
-                    className={`text-base font-medium px-2 py-1 transition duration-200 ${
-                      isActive
-                        ? "text-primary"
-                        : "text-secondary hover:text-primary"
-                    }`}
+            {navItems.map(({ name, to }) => (
+              <motion.div key={name} variants={linkVariants} whileHover="hover">
+                <li>
+                  <Link
+                    to={to}
+                    spy={true}
+                    smooth={true}
+                    offset={-100}
+                    duration={500}
+                    activeClass="text-primary font-semibold"
+                    className="cursor-pointer hover:text-primary transition block"
+                    onClick={() => setIsOpen(false)} // close menu on click
                   >
-                    {item}
-                    <span
-                      className={`absolute left-1/2 -bottom-1.5 transform -translate-x-1/2 h-[3px] w-6 rounded-full bg-primary transition-all duration-300 ${
-                        isActive ? "scale-100" : "scale-0 group-hover:scale-100"
-                      }`}
-                    ></span>
-                  </a>
-                </motion.li>
-              );
-            })}
+                    {name}
+                  </Link>
+                </li>
+              </motion.div>
+            ))}
           </ul>
         </motion.div>
       )}

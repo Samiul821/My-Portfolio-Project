@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "React.js",
+    "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    "description": "Interactive UI",
+    "borderColors": ["#61dafb", "#3b82f6"]
+  },
+  {
+    "id": 2,
+    "title": "JavaScript",
+    "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    "description": "Web scripting",
+    "borderColors": ["#facc15", "#f59e0b"]
+  },
+  {
+    "id": 3,
+    "title": "HTML5",
+    "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+    "description": "Web structure",
+    "borderColors": ["#ef4444", "#f87171"]
+  },
+  {
+    "id": 4,
+    "title": "CSS3",
+    "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+    "description": "Styling",
+    "borderColors": ["#3b82f6", "#60a5fa"]
+  },
+  {
+    "id": 5,
+    "title": "Tailwind CSS",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
+    "description": "Utility CSS",
+    "borderColors": ["#38bdf8", "#0ea5e9"]
+  },
+  {
+    "id": 6,
+    "title": "Node.js",
+    "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    "description": "Server JS",
+    "borderColors": ["#22c55e", "#16a34a"]
+  },
+  {
+    "id": 7,
+    "title": "Express.js",
+    "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+    "description": "Node framework",
+    "borderColors": ["#6b7280", "#4b5563"]
+  },
+  {
+    "id": 8,
+    "title": "MongoDB",
+    "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    "description": "NoSQL DB",
+    "borderColors": ["#10b981", "#059669"]
+  },
+  {
+    "id": 9,
+    "title": "Git",
+    "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    "description": "Version control",
+    "borderColors": ["#f97316", "#ea580c"]
+  },
+  {
+    "id": 10,
+    "title": "Firebase",
+    "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+    "description": "Backend service",
+    "borderColors": ["#fbbf24", "#f59e0b"]
+  }
+]

@@ -26,15 +26,26 @@ const Contact = () => {
   }, []);
 
   const onSubmit = (data) => {
+    const currentTime = new Date().toLocaleString("en-US", {
+      timeZone: "Asia/Dhaka",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+
     emailjs
       .send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          from_name: data.name,
-          from_email: data.email,
+          name: data.name,
+          email: data.email,
           phone: data.phone,
           message: data.message,
+          time: currentTime, // 🆕
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )

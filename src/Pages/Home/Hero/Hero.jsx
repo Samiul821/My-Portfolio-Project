@@ -90,9 +90,9 @@ const Hero = () => {
           </a>
         </div>
         <div className="flex justify-center md:justify-start">
-          <button className="mt-4 px-6 py-3 bg-primary text-white font-medium rounded-full flex items-center gap-2 hover:bg-green-600 transition">
+          <a href="#contact" className="mt-4 px-6 py-3 bg-primary text-white font-medium rounded-full flex items-center gap-2 hover:bg-green-600 transition">
             Hire Me <FaArrowRight />
-          </button>
+          </a>
         </div>
       </div>
 

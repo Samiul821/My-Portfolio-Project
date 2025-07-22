@@ -37,7 +37,10 @@ const MyProjects = () => {
   }, [swiper]);
 
   return (
-    <section id="projects" className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-[2%] lg:px-[12%] overflow-hidden bg-gradient-to-br from-[#fffce8] to-[#f9f6ff]">
+    <section
+      id="projects"
+      className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-[2%] lg:px-[12%] overflow-hidden bg-gradient-to-br from-[#fffce8] to-[#f9f6ff]"
+    >
       <img
         src={line1}
         alt=""
@@ -125,7 +128,6 @@ const MyProjects = () => {
           </button>
         </div>
 
-        {/* Pagination Dots */}
         <div
           ref={paginationRef}
           className="swiper-pagination mt-6 flex justify-center gap-2"

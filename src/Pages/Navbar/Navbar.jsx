@@ -16,26 +16,25 @@ const Navbar = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // পেজ লোডে হোম সেকশনে স্ক্রল
+  // Scroll to home section on initial load
   useEffect(() => {
-    // DOM লোড হওয়ার জন্য সামান্য ডিলে
+    // Scroll to home section on initial load
     const timer = setTimeout(() => {
       scroller.scrollTo("home", {
         smooth: true,
-        offset: -80, // নেভবারের উচ্চতা অনুযায়ী
+        offset: -80,
         duration: 500,
       });
     }, 100);
 
-    // ব্রাউজারের ডিফল্ট স্ক্রল রিসেট
     window.scrollTo(0, 0);
 
-    return () => clearTimeout(timer); // ক্লিনআপ
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <div className="fixed w-full h-16 flex justify-between items-center px-4 bg-white shadow-md z-50">
-      {/* লোগো */}
+      {/* Logo and Title */}
       <Link
         to="home"
         spy={true}
@@ -48,7 +47,7 @@ const Navbar = () => {
         <h1 className="text-xl font-bold text-gray-800">Samiul</h1>
       </Link>
 
-      {/* ডেস্কটপ মেনু */}
+      {/* Navigation Links */}
       <ul className="hidden md:flex gap-6">
         {navItems.map(({ name, to }) => (
           <li
@@ -70,7 +69,7 @@ const Navbar = () => {
         ))}
       </ul>
 
-      {/* রেজুমে বাটন */}
+      {/* Resume Button */}
       <div className="hidden md:flex">
         <a
           href="https://drive.google.com/file/d/1YqyzltnqPAfhxvNvDR7PGDWaKl9rWgBX/view?usp=sharing"
@@ -82,7 +81,7 @@ const Navbar = () => {
         </a>
       </div>
 
-      {/* মোবাইল মেনু আইকন */}
+      {/* Hamburger Menu Icon for Mobile */}
       <div
         onClick={toggleMenu}
         className="md:hidden z-50 text-2xl cursor-pointer"
@@ -90,7 +89,7 @@ const Navbar = () => {
         {isOpen ? <FaTimes /> : <FaBars />}
       </div>
 
-      {/* মোবাইল মেনু আইটেম */}
+      {/* Mobile Menu */}
       {isOpen && (
         <ul className="absolute top-16 left-0 w-full bg-white flex flex-col items-center gap-6 py-8 shadow-md z-40">
           {navItems.map(({ name, to }) => (

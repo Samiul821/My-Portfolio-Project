@@ -10,17 +10,15 @@ import { useLoaderData } from "react-router-dom";
 const Home = () => {
   const skills = useLoaderData();
 
-  // পেজ লোডে হোম সেকশনে স্ক্রল
+  // Scroll to home section on initial load
   useEffect(() => {
     const timer = setTimeout(() => {
       scroller.scrollTo("home", {
         smooth: true,
-        offset: -80, // নেভবারের উচ্চতা অনুযায়ী
+        offset: -80,
         duration: 500,
       });
     }, 100);
-
-    // ব্রাউজারের ডিফল্ট স্ক্রল রিসেট
     window.scrollTo(0, 0);
 
     return () => clearTimeout(timer);

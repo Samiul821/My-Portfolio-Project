@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { Link, scroller } from "react-scroll";
 import Avatar from "../../assets/50426.jpg";
-import { Link } from "react-scroll";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolling, setScrolling] = useState(false);
 
   const navItems = [
     { name: "Home", to: "home" },
@@ -16,125 +14,112 @@ const Navbar = () => {
     { name: "Contact", to: "contact" },
   ];
 
-  // Scroll background change
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  // পেজ লোডে হোম সেকশনে স্ক্রল
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolling(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // DOM লোড হওয়ার জন্য সামান্য ডিলে
+    const timer = setTimeout(() => {
+      scroller.scrollTo("home", {
+        smooth: true,
+        offset: -80, // নেভবারের উচ্চতা অনুযায়ী
+        duration: 500,
+      });
+    }, 100);
+
+    // ব্রাউজারের ডিফল্ট স্ক্রল রিসেট
+    window.scrollTo(0, 0);
+
+    return () => clearTimeout(timer); // ক্লিনআপ
   }, []);
-
-  // Prevent auto scroll to hash section
-  useEffect(() => {
-    if (window.location.hash) {
-      window.history.replaceState(null, "", window.location.pathname);
-    }
-
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 50);
-  }, []);
-
-  // Link hover animation
-  const linkVariants = {
-    hover: {
-      scale: 1.05,
-      color: "#27ae60",
-      transition: { duration: 0.2 },
-    },
-  };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-200 ${
-        scrolling ? "bg-white shadow-md" : ""
-      }`}
-    >
-      <div className="px-[2%] lg:px-[12%] flex justify-between items-center py-4 lg:py-6">
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden bg-primary pt-2 pb-1 px-2 rounded-lg">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-white cursor-pointer"
+    <div className="fixed w-full h-16 flex justify-between items-center px-4 bg-white shadow-md z-50">
+      {/* লোগো */}
+      <Link
+        to="home"
+        spy={true}
+        smooth={true}
+        offset={-80}
+        duration={500}
+        className="cursor-pointer flex items-center gap-2"
+      >
+        <img src={Avatar} alt="Logo" className="w-10 h-10 rounded-full" />
+        <h1 className="text-xl font-bold text-gray-800">Samiul</h1>
+      </Link>
+
+      {/* ডেস্কটপ মেনু */}
+      <ul className="hidden md:flex gap-6">
+        {navItems.map(({ name, to }) => (
+          <li
+            key={name}
+            className="text-gray-700 hover:text-blue-600 capitalize text-lg cursor-pointer duration-200"
           >
-            {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
-          </button>
-        </div>
+            <Link
+              to={to}
+              spy={true}
+              smooth={true}
+              offset={-80}
+              duration={500}
+              activeClass="text-primary border-b-2 border-primary pb-1"
+              className="cursor-pointer hover:text-primary transition"
+            >
+              {name}
+            </Link>
+          </li>
+        ))}
+      </ul>
 
-        {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <img src={Avatar} alt="Avatar" className="h-12 rounded-full" />
-          <span className="text-2xl md:text-4xl font-bold text-secondary">
-            SAMIUl.
-          </span>
-        </div>
-
-        {/* Desktop Nav Links */}
-        <div className="hidden md:block md:flex flex-1 justify-center">
-          <ul className="flex space-x-6">
-            {navItems.map(({ name, to }) => (
-              <motion.div key={name} variants={linkVariants} whileHover="hover">
-                <Link
-                  to={to}
-                  spy={true}
-                  smooth={true}
-                  offset={-250} // changed from -200 to -250
-                  duration={500}
-                  activeClass="text-primary border-b-2 border-primary pb-1"
-                  className="cursor-pointer hover:text-primary transition"
-                >
-                  {name}
-                </Link>
-              </motion.div>
-            ))}
-          </ul>
-        </div>
-
-        {/* Resume Button */}
-        <motion.a
+      {/* রেজুমে বাটন */}
+      <div className="hidden md:flex">
+        <a
           href="https://drive.google.com/file/d/1YqyzltnqPAfhxvNvDR7PGDWaKl9rWgBX/view?usp=sharing"
           target="_blank"
+          rel="noopener noreferrer"
           className="text-white text-[14px] md:text-lg bg-primary px-4 py-2 rounded-full hover:bg-[#27ae60] transition font-medium flex items-center"
-          whileHover={{ scale: 1.05 }}
         >
           Resume <span className="ml-2 text-[14px] md:text-lg">↓</span>
-        </motion.a>
+        </a>
       </div>
 
-      {/* Mobile Menu */}
+      {/* মোবাইল মেনু আইকন */}
+      <div
+        onClick={toggleMenu}
+        className="md:hidden z-50 text-2xl cursor-pointer"
+      >
+        {isOpen ? <FaTimes /> : <FaBars />}
+      </div>
+
+      {/* মোবাইল মেনু আইটেম */}
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden bg-white p-6 shadow-sm"
-        >
-          <ul className="flex flex-col space-y-3">
-            {navItems.map(({ name, to }) => (
-              <motion.div key={name} variants={linkVariants} whileHover="hover">
-                <li>
-                  <Link
-                    to={to}
-                    spy={true}
-                    smooth={true}
-                    offset={-100}
-                    duration={500}
-                    activeClass="text-primary font-semibold"
-                    className="cursor-pointer hover:text-primary transition block"
-                    onClick={() => setIsOpen(false)} // close menu on click
-                  >
-                    {name}
-                  </Link>
-                </li>
-              </motion.div>
-            ))}
-          </ul>
-        </motion.div>
+        <ul className="absolute top-16 left-0 w-full bg-white flex flex-col items-center gap-6 py-8 shadow-md z-40">
+          {navItems.map(({ name, to }) => (
+            <li key={name} className="text-gray-700 text-xl">
+              <Link
+                to={to}
+                spy={true}
+                smooth={true}
+                offset={-80}
+                duration={500}
+                activeClass="text-primary font-semibold"
+                className="cursor-pointer hover:text-primary transition block"
+                onClick={toggleMenu}
+              >
+                {name}
+              </Link>
+            </li>
+          ))}
+          <a
+            href="https://drive.google.com/file/d/1YqyzltnqPAfhxvNvDR7PGDWaKl9rWgBX/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 duration-300"
+          >
+            Resume
+          </a>
+        </ul>
       )}
-    </motion.nav>
+    </div>
   );
 };
 

@@ -6,9 +6,10 @@ import MyImage from "../../../assets/image (9).png";
 
 const AboutMe = () => {
   return (
-    <section id="about" className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-r from-yellow-50 to-purple-200 px-[2%] lg:px-[12%] overflow-hidden">
+    <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-r from-yellow-50 to-purple-200 px-[2%] lg:px-[12%] overflow-hidden">
       {/* Shape 1: Top Left */}
       <Motion
+        data-aos="fade-left"
         defaultStyle={{ y: 0 }}
         style={{ y: spring(-10, { stiffness: 120, damping: 7 }) }}
       >
@@ -24,6 +25,7 @@ const AboutMe = () => {
 
       {/* Shape 2: Bottom Right */}
       <Motion
+        data-aos="fade-right"
         defaultStyle={{ y: 0 }}
         style={{ y: spring(-15, { stiffness: 100, damping: 8 }) }}
       >

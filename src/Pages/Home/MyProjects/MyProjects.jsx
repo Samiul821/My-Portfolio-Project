@@ -38,7 +38,6 @@ const MyProjects = () => {
 
   return (
     <section
-      id="projects"
       className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-[2%] lg:px-[12%] overflow-hidden bg-gradient-to-br from-[#fffce8] to-[#f9f6ff]"
     >
       <img

@@ -7,6 +7,7 @@ import NodePng from "../../../assets/Node.js.png";
 import ExpressPng from "../../../assets/Express.png";
 import ReactPng from "../../../assets/React.png";
 import { Typewriter } from "react-simple-typewriter";
+import { Link } from "react-scroll";
 
 const Hero = () => {
   // Animation variants for subtle inward jumping
@@ -33,7 +34,6 @@ const Hero = () => {
 
   return (
     <section
-      id="home"
       className="lg:min-h-screen md:h-[calc(80vh-80px)] flex flex-col md:flex-row items-center justify-between py-10 pt-24 bg-gradient-to-r from-pink-100 via-yellow-50 to-blue-100 px-[4%] lg:px-[12%] gap-10"
     >
       {/* Left Content */}
@@ -90,9 +90,15 @@ const Hero = () => {
           </a>
         </div>
         <div className="flex justify-center md:justify-start">
-          <a href="#contact" className="mt-4 px-6 py-3 bg-primary text-white font-medium rounded-full flex items-center gap-2 hover:bg-green-600 transition">
+          <Link
+            to="contact"
+            smooth={true}
+            duration={500}
+            offset={-100}
+            className="mt-4 px-6 py-3 bg-primary text-white font-medium rounded-full flex items-center gap-2 hover:bg-green-600 transition cursor-pointer"
+          >
             Hire Me <FaArrowRight />
-          </a>
+          </Link>
         </div>
       </div>
 

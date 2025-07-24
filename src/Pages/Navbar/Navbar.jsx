@@ -64,7 +64,7 @@ const Navbar = () => {
           className="cursor-pointer flex items-center gap-2"
         >
           <img src={Avatar} alt="Logo" className="w-14 h-14 rounded-full" />
-          <h1 className="text-2xl md:text-[45px] font-bold text-secondary">Samiul</h1>
+          <h1 className="text-2xl md:text-[45px] font-bold text-secondary">Samiul.</h1>
         </Link>
       </div>
 
@@ -85,7 +85,7 @@ const Navbar = () => {
         {navItems.map(({ name, to }) => (
           <li
             key={name}
-            className="text-secondary hover:text-primary capitalize text-lg cursor-pointer duration-200"
+            className="text-secondary hover:text-primary capitalize  cursor-pointer duration-200"
           >
             <Link
               to={to}

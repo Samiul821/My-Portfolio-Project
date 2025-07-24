@@ -39,7 +39,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`fixed w-full h-[82px] py-1.5 flex items-center justify-between px-[4%] lg:px-[12%] z-50 transition-all duration-300 ease-in-out ${
+      className={`fixed w-full h-[82px] py-1.5 flex items-center justify-between px-[2%] lg:px-[12%] z-50 transition-all duration-300 ease-in-out ${
         isScrolled
           ? "bg-white shadow-md translate-y-0"
           : "bg-transparent translate-y-0"

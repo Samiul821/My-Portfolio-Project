@@ -39,22 +39,20 @@ const Navbar = () => {
 
   return (
     <div
-      className={`fixed w-full h-[82px] py-1.5 flex items-center justify-between px-[2%] lg:px-[12%] z-50 transition-all duration-300 ease-in-out ${
-        isScrolled
-          ? "bg-white shadow-md translate-y-0"
-          : "bg-transparent translate-y-0"
+      className={`fixed w-full h-16 sm:h-20 md:h-[82px] py-1.5 flex items-center justify-between px-4 sm:px-6 md:px-12 lg:px-[12%] z-50 transition-all duration-300 ease-in-out ${
+        isScrolled ? "bg-white shadow-md backdrop-blur-md" : "bg-transparent"
       }`}
     >
       {/* Hamburger - Mobile Left */}
       <div
         onClick={toggleMenu}
-        className="md:hidden z-50 text-2xl cursor-pointer"
+        className="md:hidden z-50 text-2xl cursor-pointer text-secondary"
       >
         {isOpen ? <FaTimes /> : <FaBars />}
       </div>
 
       {/* Logo - Center */}
-      <div className="absolute left-1/3 -translate-x-1/2 md:static md:translate-x-0">
+      <div className="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none">
         <Link
           to="home"
           spy={true}
@@ -63,29 +61,35 @@ const Navbar = () => {
           duration={500}
           className="cursor-pointer flex items-center gap-2"
         >
-          <img src={Avatar} alt="Logo" className="w-14 h-14 rounded-full" />
-          <h1 className="text-2xl md:text-[45px] font-bold text-secondary">Samiul.</h1>
+          <img
+            src={Avatar}
+            alt="Logo"
+            className="w-12 sm:w-14 h-12 sm:h-14 rounded-full"
+          />
+          <h1 className="text-xl sm:text-2xl md:text-[45px] font-bold text-secondary">
+            Samiul.
+          </h1>
         </Link>
       </div>
 
-      {/* Resume Button - Mobile & Desktop Right */}
+      {/* Resume Button - Right */}
       <div className="z-50">
         <a
           href="https://drive.google.com/file/d/1YqyzltnqPAfhxvNvDR7PGDWaKl9rWgBX/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white text-[14px] md:text-lg bg-primary px-4 py-2 rounded-full hover:bg-[#27ae60] transition font-medium flex items-center"
+          className="text-white text-sm sm:text-base md:text-lg bg-primary px-4 py-2 rounded-full hover:bg-[#27ae60] transition font-medium flex items-center"
         >
-          Resume <span className="ml-2 text-[14px] md:text-lg">↓</span>
+          Resume <span className="ml-2 text-sm sm:text-base">↓</span>
         </a>
       </div>
 
-      {/* Nav Links - Only Desktop */}
-      <ul className="hidden md:flex gap-6 absolute left-1/2 -translate-x-1/2">
+      {/* Nav Links - Desktop */}
+      <ul className="hidden md:flex gap-6 items-center justify-center mx-auto absolute left-1/2 transform -translate-x-1/2">
         {navItems.map(({ name, to }) => (
           <li
             key={name}
-            className="text-secondary hover:text-primary capitalize  cursor-pointer duration-200"
+            className="text-secondary hover:text-primary capitalize cursor-pointer duration-200"
           >
             <Link
               to={to}
@@ -104,7 +108,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <ul className="absolute top-16 left-0 w-full bg-white flex flex-col items-center gap-6 py-8 shadow-md z-40">
+        <ul className="absolute top-full left-0 w-full bg-white flex flex-col items-center gap-6 py-8 shadow-md z-40">
           {navItems.map(({ name, to }) => (
             <li key={name} className="text-secondary text-xl">
               <Link

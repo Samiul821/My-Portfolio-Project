@@ -38,7 +38,7 @@ const MyProjects = () => {
 
   return (
     <section
-      className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-[2%] lg:px-[12%] overflow-hidden bg-gradient-to-br from-[#fffce8] to-[#f9f6ff]"
+      className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-[4%]  xl:px-[12%] overflow-hidden bg-gradient-to-br from-[#fffce8] to-[#f9f6ff]"
     >
       <img
         src={line1}
@@ -69,7 +69,7 @@ const MyProjects = () => {
         onSwiper={setSwiper}
         breakpoints={{
           768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
+          1440: {slidesPerView: 3}
         }}
       >
         {Projects.map((project, index) => (

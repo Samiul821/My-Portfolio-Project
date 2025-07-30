@@ -6,7 +6,7 @@ import MyImage from "../../../assets/image (9).png";
 
 const AboutMe = () => {
   return (
-    <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-r from-yellow-50 to-purple-200 px-[2%] lg:px-[12%] overflow-hidden">
+    <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-r from-yellow-50 to-purple-200 px-[2%] md:px-[4%] xl:px-[12%] overflow-hidden">
       {/* Shape 1: Top Left */}
       <Motion
         data-aos="fade-left"

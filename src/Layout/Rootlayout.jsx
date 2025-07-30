@@ -22,7 +22,7 @@ const Rootlayout = () => {
   return (
     <div>
       <Navbar />
-      <main className="pb-20">
+      <main>
         {/* padding bottom to avoid overlap */}
         <Outlet />
       </main>

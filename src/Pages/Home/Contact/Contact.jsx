@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion"; // Import Framer Motion
 
 const Contact = () => {
   const {
@@ -45,7 +46,7 @@ const Contact = () => {
           email: data.email,
           phone: data.phone,
           message: data.message,
-          time: currentTime, // 🆕
+          time: currentTime,
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
@@ -72,12 +73,12 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-50/50 via-white to-white px-[2%] lg:px-[12%] overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-r from-[#fff9fb] to-[#FFFFFF] px-[4%] xl:px-[12%] overflow-hidden">
       <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center text-primary mb-8 sm:mb-12 tracking-tight animate-[fadeIn_0.5s_ease-out_0.1s_both]">
         Let’s Talk
       </h1>
 
-      <div className="w-full grid lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+      <div className="w-full grid lg:grid-cols-1 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
         {/* Left: Contact Form */}
         <div className="lg:col-span-2 bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl pt-8 sm:pt-10 pb-6 sm:pb-8 px-6 sm:px-8 lg:px-12 transform transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] animate-[fadeIn_0.5s_ease-out_0.2s_both]">
           <h2 className="text-2xl sm:text-3xl font-semibold text-center text-gray-900 mb-6 sm:mb-8 animate-[fadeIn_0.5s_ease-out_0.3s_both]">
@@ -90,12 +91,15 @@ const Contact = () => {
           >
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
               <div>
-                <input
+                <motion.input
                   {...register("name", { required: "Name is required" })}
                   type="text"
                   placeholder="Your Name"
-                  className="border-b-2 border-gray-300 w-full py-3 sm:py-4 text-sm sm:text-base placeholder-gray-500 focus:border-primary focus:outline-none transition-colors duration-200 animate-[fadeIn_0.5s_ease-out_0.4s_both]"
+                  className="border-b-2 border-gray-300 w-full py-3 sm:py-4 text-sm sm:text-base placeholder-gray-500 focus:border-primary focus:outline-none transition-colors duration-200"
                   aria-invalid={errors.name ? "true" : "false"}
+                  whileHover={{ scale: 1.02, borderColor: "#41b362" }} // Hover animation
+                  initial={{ scale: 1 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }} // Smoother transition
                 />
                 {errors.name && (
                   <p className="text-red-500 text-xs sm:text-sm mt-1 animate-[fadeIn_0.5s_ease-out_0.5s_both]">
@@ -104,7 +108,7 @@ const Contact = () => {
                 )}
               </div>
               <div>
-                <input
+                <motion.input
                   {...register("email", {
                     required: "Email is required",
                     pattern: {
@@ -114,8 +118,11 @@ const Contact = () => {
                   })}
                   type="email"
                   placeholder="Your Email"
-                  className="border-b-2 border-gray-300 w-full py-3 sm:py-4 text-sm sm:text-base placeholder-gray-500 focus:border-primary focus:outline-none transition-colors duration-200 animate-[fadeIn_0.5s_ease-out_0.4s_both]"
+                  className="border-b-2 border-gray-300 w-full py-3 sm:py-4 text-sm sm:text-base placeholder-gray-500 focus:border-primary focus:outline-none transition-colors duration-200"
                   aria-invalid={errors.email ? "true" : "false"}
+                  whileHover={{ scale: 1.02, borderColor:  "#41b362"}} // Hover animation
+                  initial={{ scale: 1 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }} // Smoother transition
                 />
                 {errors.email && (
                   <p className="text-red-500 text-xs sm:text-sm mt-1 animate-[fadeIn_0.5s_ease-out_0.5s_both]">
@@ -125,12 +132,15 @@ const Contact = () => {
               </div>
             </div>
             <div>
-              <input
+              <motion.input
                 {...register("phone", { required: "Phone is required" })}
                 type="text"
                 placeholder="Your Phone"
-                className="border-b-2 border-gray-300 w-full py-3 sm:py-4 text-sm sm:text-base placeholder-gray-500 focus:border-primary focus:outline-none transition-colors duration-200 animate-[fadeIn_0.5s_ease-out_0.5s_both]"
+                className="border-b-2 border-gray-300 w-full py-3 sm:py-4 text-sm sm:text-base placeholder-gray-500 focus:border-primary focus:outline-none transition-colors duration-200"
                 aria-invalid={errors.phone ? "true" : "false"}
+                whileHover={{ scale: 1.02, borderColor: "#41b362" }} // Hover animation
+                initial={{ scale: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }} // Smoother transition
               />
               {errors.phone && (
                 <p className="text-red-500 text-xs sm:text-sm mt-1 animate-[fadeIn_0.5s_ease-out_0.6s_both]">
@@ -139,13 +149,16 @@ const Contact = () => {
               )}
             </div>
             <div>
-              <textarea
+              <motion.textarea
                 {...register("message", { required: "Message is required" })}
                 rows="4"
                 placeholder="Your Message"
-                className="border-b-2 border-gray-300 w-full py-3 sm:py-4 text-sm sm:text-base placeholder-gray-500 focus:border-primary focus:outline-none transition-colors duration-200 animate-[fadeIn_0.5s_ease-out_0.6s_both]"
+                className="border-b-2 border-gray-300 w-full py-3 sm:py-4 text-sm sm:text-base placeholder-gray-500 focus:border-primary focus:outline-none transition-colors duration-200"
                 aria-invalid={errors.message ? "true" : "false"}
-              ></textarea>
+                whileHover={{ scale: 1.02, borderColor: "#41b362" }} // Hover animation
+                initial={{ scale: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }} // Smoother transition
+              ></motion.textarea>
               {errors.message && (
                 <p className="text-red-500 text-xs sm:text-sm mt-1 animate-[fadeIn_0.5s_ease-out_0.7s_both]">
                   {errors.message.message}
@@ -163,36 +176,44 @@ const Contact = () => {
 
         {/* Right: Contact Info */}
         <div className="space-y-4 sm:space-y-6">
-          <div className="bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl p-5 sm:p-6 flex items-center gap-4 transform transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] animate-[fadeIn_0.5s_ease-out_0.3s_both]">
-            <div className="text-yellow-400 text-2xl sm:text-3xl bg-yellow-50 rounded-full p-3 sm:p-4 shadow">
-              <FaMapMarkerAlt />
-            </div>
-            <div>
-              <p className="font-bold text-base sm:text-lg text-gray-900">
+          <div className="bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl px-10 py-[33px] gap-4 transform transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] animate-[fadeIn_0.5s_ease-out_0.3s_both]">
+            <div className="mb-[15px]">
+              <p className="font-bold text-2xl text-gray-900">
                 Bogura, Bangladesh
               </p>
+            </div>
+            <div className="flex items-center space-x-3">
+              <div className="text-yellow-400 text-2xl sm:text-3xl bg-yellow-50 rounded-full p-4 shadow">
+                <FaMapMarkerAlt />
+              </div>
               <p className="text-gray-500 text-sm sm:text-base">My Address</p>
             </div>
           </div>
-          <div className="bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl p-5 sm:p-6 flex items-center gap-4 transform transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] animate-[fadeIn_0.5s_ease-out_0.4s_both]">
-            <div className="text-yellow-400 text-2xl sm:text-3xl bg-yellow-50 rounded-full p-3 sm:p-4 shadow">
-              <FaEnvelope />
-            </div>
-            <div>
-              <p className="font-bold text-base sm:text-lg text-gray-900">
+          <div className="bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl px-10 py-[33px] gap-4 transform transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] animate-[fadeIn_0.5s_ease-out_0.3s_both]">
+            <div className="mb-[15px]">
+              <p className="font-bold text-2xl text-gray-900">
                 smsamiul821@gmail.com
               </p>
+            </div>
+
+            <div className="flex items-center space-x-3">
+              <div className="text-yellow-400 text-2xl sm:text-3xl bg-yellow-50 rounded-full p-4 shadow">
+                <FaEnvelope />
+              </div>
               <p className="text-gray-500 text-sm sm:text-base">My Email</p>
             </div>
           </div>
-          <div className="bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl p-5 sm:p-6 flex items-center gap-4 transform transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] animate-[fadeIn_0.5s_ease-out_0.5s_both]">
-            <div className="text-yellow-400 text-2xl sm:text-3xl bg-yellow-50 rounded-full p-3 sm:p-4 shadow">
-              <FaPhone />
-            </div>
-            <div>
-              <p className="font-bold text-base sm:text-lg text-gray-900">
+          <div className="bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl px-10 py-[33px] gap-4 transform transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] animate-[fadeIn_0.5s_ease-out_0.3s_both]">
+            <div className="mb-[15px]">
+              <p className="font-bold text-2xl text-gray-900">
                 +880 133-062-4539
               </p>
+            </div>
+
+            <div className="flex items-center space-x-3">
+              <div className="text-yellow-400 text-2xl sm:text-3xl bg-yellow-50 rounded-full p-4 shadow">
+                <FaPhone />
+              </div>
               <p className="text-gray-500 text-sm sm:text-base">My Phone</p>
             </div>
           </div>

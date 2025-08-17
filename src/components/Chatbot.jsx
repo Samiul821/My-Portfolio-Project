@@ -1,188 +1,174 @@
+// Chatbot.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { FiSend } from "react-icons/fi";
+import botAvatar from "../assets/botAvatar.jpg"
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
-      text: "Hello! I’m Grok, your portfolio assistant. How can I help you today?",
-      sender: "bot",
-      timestamp: new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
+      id: 1,
+      from: "bot",
+      text: "👋 Hi! Welcome to Samiul's Portfolio. Ask me about my projects, skills, or experience!",
     },
-  ]);
+  ]); // ✅ default welcome message
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const messagesEndRef = useRef(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
+  // Auto-scroll
   useEffect(() => {
-    scrollToBottom();
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
   const handleClose = () => setIsOpen(false);
 
-  const sendMessage = async (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    const userMessage = input.trim();
+    if (!userMessage) return;
 
-    const userMessage = {
-      text: input,
-      sender: "user",
-      timestamp: new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
-    };
-    setMessages((prev) => [...prev, userMessage]);
     setInput("");
+
+    // Add user message
+    setMessages((history) => [
+      ...history,
+      { sender: "user", text: userMessage },
+    ]);
+
+    // Immediately show typing indicator
     setIsTyping(true);
 
-    // Simulate AI response
-    setTimeout(() => {
-      const botMessage = {
-        text: `You said: "${input}". Want to showcase a project or get feedback?`,
-        sender: "bot",
-        timestamp: new Date().toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
-      };
-      setMessages((prev) => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 1500);
+    // Call API
+    generateBotResponse({
+      history: [...messages, { sender: "user", text: userMessage }],
+    });
+  };
+
+  const generateBotResponse = async ({ history }) => {
+    const updateHistory = (text) => {
+      setMessages((prev) => [...prev, { sender: "bot", text }]);
+      setIsTyping(false); // Stop typing indicator
+    };
+
+    // Format history for API
+    const formattedHistory = history.map(({ sender, text }) => ({
+      role: sender === "user" ? "user" : "model",
+      parts: [{ text }],
+    }));
+
+    try {
+      const response = await fetch(import.meta.env.VITE_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contents: formattedHistory }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error?.message || "Something went wrong!");
+      }
+
+      const apiResponseText =
+        data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ||
+        "⚠️ No response from AI";
+
+      updateHistory(apiResponseText);
+    } catch (error) {
+      console.error(error);
+      updateHistory("⚠️ Sorry, I couldn't fetch a response.");
+    }
   };
 
   if (!isOpen) return null;
 
-  return (
-    <div className="flex flex-col h-full bg-white w-full max-w-md border rounded-lg shadow-lg">
-      {/* Typing Indicator Styles */}
-      <style>
-        {`
-          .typing-indicator {
-            display: inline-block;
-            width: 40px;
-            text-align: center;
-          }
-          .typing-indicator::after {
-            content: '...';
-            display: inline-block;
-            animation: typing 1.5s infinite;
-          }
-          @keyframes typing {
-            0% { content: '.'; }
-            33% { content: '..'; }
-            66% { content: '...'; }
-          }
-        `}
-      </style>
+  // const gradientStyle = {
+  //   background: "linear-gradient(135deg, #41b362, #2fa84f)",
+  // };
 
+  return (
+   <div className="flex flex-col w-full max-w-md h-[600px] rounded-2xl shadow-xl border overflow-hidden mx-auto mt-10">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 flex justify-between items-center">
-        <h3 className="text-lg font-semibold">Grok Portfolio Assistant</h3>
-        <button
-          onClick={handleClose}
-          className="text-white hover:text-gray-200"
-        >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+      <div className="flex justify-between items-center p-4 text-white bg-gradient-to-r from-green-400 to-blue-500">
+        <h2 className="font-bold text-lg">Samiul's Portfolio Assistant</h2>
+        <button onClick={handleClose} className="text-white hover:text-gray-200 text-xl">
+          ✖
         </button>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 p-4 overflow-y-auto bg-gray-100">
-        {messages.map((msg, index) => (
+      <div className="flex-1 p-4 bg-gray-100 overflow-y-auto space-y-3">
+        {messages.map((msg) => (
           <motion.div
-            key={index}
-            className={`flex ${
-              msg.sender === "user" ? "justify-end" : "justify-start"
-            } mb-3`}
-            initial={{ opacity: 0, y: 10 }}
+            key={msg.id}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2 }}
+            className={`flex items-end ${
+              msg.sender === "user" ? "justify-end" : "justify-start"
+            }`}
           >
-            <div className="flex flex-col max-w-[70%]">
-              <div
-                className={`p-3 rounded-lg ${
-                  msg.sender === "user"
-                    ? "bg-blue-500 text-white"
-                    : "bg-white text-gray-800 shadow-sm"
-                }`}
-              >
-                {msg.text}
-              </div>
-              <span className="text-xs text-gray-500 mt-1 mx-3">
-                {msg.timestamp}
-              </span>
+            {msg.sender === "bot" && (
+              <img
+                src={botAvatar}
+                alt="bot"
+                className="w-8 h-8 rounded-full mr-2"
+              />
+            )}
+            <div
+              className={`p-3 rounded-xl max-w-[75%] ${
+                msg.sender === "user"
+                  ? "bg-gradient-to-r from-green-400 to-blue-500 text-white"
+                  : "bg-white text-gray-900 shadow-sm"
+              }`}
+            >
+              {msg.text}
             </div>
           </motion.div>
         ))}
 
         {isTyping && (
           <motion.div
-            className="flex justify-start mb-3"
+            className="flex items-center justify-start mb-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="bg-white p-3 rounded-lg shadow-sm">
-              <span className="typing-indicator">...</span>
+            <img
+              src={botAvatar}
+              alt="bot"
+              className="w-8 h-8 rounded-full mr-2"
+            />
+            <div className="bg-white text-gray-500 italic p-2 rounded-xl shadow-sm">
+              AI is typing...
             </div>
           </motion.div>
         )}
-
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Area */}
-      <div className="p-4 bg-white border-t border-gray-200">
-        <form onSubmit={sendMessage} className="flex gap-2">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your message..."
-            className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <motion.button
-            type="submit"
-            className="bg-blue-500 text-white p-2 rounded-lg"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-              />
-            </svg>
-          </motion.button>
-        </form>
-      </div>
+      {/* Input */}
+      <form
+        onSubmit={handleFormSubmit}
+        className="flex items-center p-4 gap-2 border-t bg-white"
+      >
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Type a message..."
+          className="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+        <motion.button
+          type="submit"
+          className="p-3 bg-gradient-to-r from-green-400 to-blue-500 rounded-full text-white flex items-center justify-center"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <FiSend size={20} />
+        </motion.button>
+      </form>
     </div>
   );
 };

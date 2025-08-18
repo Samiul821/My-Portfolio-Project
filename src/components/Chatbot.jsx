@@ -2,21 +2,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FiSend } from "react-icons/fi";
-import botAvatar from "../assets/botAvatar.jpg";
+import botAvatar from "../assets/botAvatar.jpg"
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      sender: "bot",
+      from: "bot",
       text: "👋 Hi! Welcome to Samiul's Portfolio. Ask me about my projects, skills, or experience!",
     },
-  ]);
+  ]); // ✅ default welcome message
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const messagesEndRef = useRef(null);
 
+  // Auto-scroll
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
@@ -29,12 +30,17 @@ const Chatbot = () => {
     if (!userMessage) return;
 
     setInput("");
+
+    // Add user message
     setMessages((history) => [
       ...history,
       { sender: "user", text: userMessage },
     ]);
+
+    // Immediately show typing indicator
     setIsTyping(true);
 
+    // Call API
     generateBotResponse({
       history: [...messages, { sender: "user", text: userMessage }],
     });
@@ -43,9 +49,10 @@ const Chatbot = () => {
   const generateBotResponse = async ({ history }) => {
     const updateHistory = (text) => {
       setMessages((prev) => [...prev, { sender: "bot", text }]);
-      setIsTyping(false);
+      setIsTyping(false); // Stop typing indicator
     };
 
+    // Format history for API
     const formattedHistory = history.map(({ sender, text }) => ({
       role: sender === "user" ? "user" : "model",
       parts: [{ text }],
@@ -59,8 +66,9 @@ const Chatbot = () => {
       });
 
       const data = await response.json();
-      if (!response.ok)
+      if (!response.ok) {
         throw new Error(data.error?.message || "Something went wrong!");
+      }
 
       const apiResponseText =
         data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ||
@@ -76,25 +84,20 @@ const Chatbot = () => {
   if (!isOpen) return null;
 
   return (
-    <div className="flex flex-col w-full sm:w-[22rem] md:w-[28rem] h-[70vh] sm:h-[600px] rounded-2xl shadow-xl border overflow-hidden bg-white">
+   <div className="flex flex-col w-full max-w-md h-[600px] rounded-2xl shadow-xl border overflow-hidden mx-auto mt-10">
       {/* Header */}
-      <div className="flex justify-between items-center p-3 sm:p-4 text-white bg-gradient-to-r from-green-400 to-blue-500">
-        <h2 className="font-bold text-sm sm:text-lg">
-          Samiul's Portfolio Assistant
-        </h2>
-        <button
-          onClick={handleClose}
-          className="text-white hover:text-gray-200 text-lg sm:text-xl"
-        >
+      <div className="flex justify-between items-center p-4 text-white bg-gradient-to-r from-green-400 to-blue-500">
+        <h2 className="font-bold text-lg">Samiul's Portfolio Assistant</h2>
+        <button onClick={handleClose} className="text-white hover:text-gray-200 text-xl">
           ✖
         </button>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 p-3 sm:p-4 bg-gray-100 overflow-y-auto space-y-3">
-        {messages.map((msg, index) => (
+      <div className="flex-1 p-4 bg-gray-100 overflow-y-auto space-y-3">
+        {messages.map((msg) => (
           <motion.div
-            key={index}
+            key={msg.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2 }}
@@ -106,11 +109,11 @@ const Chatbot = () => {
               <img
                 src={botAvatar}
                 alt="bot"
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full mr-2"
+                className="w-8 h-8 rounded-full mr-2"
               />
             )}
             <div
-              className={`px-3 py-2 sm:p-3 rounded-xl max-w-[80%] sm:max-w-[75%] text-sm sm:text-base ${
+              className={`p-3 rounded-xl max-w-[75%] ${
                 msg.sender === "user"
                   ? "bg-gradient-to-r from-green-400 to-blue-500 text-white"
                   : "bg-white text-gray-900 shadow-sm"
@@ -131,9 +134,9 @@ const Chatbot = () => {
             <img
               src={botAvatar}
               alt="bot"
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full mr-2"
+              className="w-8 h-8 rounded-full mr-2"
             />
-            <div className="bg-white text-gray-500 italic px-3 py-2 rounded-xl shadow-sm text-sm sm:text-base">
+            <div className="bg-white text-gray-500 italic p-2 rounded-xl shadow-sm">
               AI is typing...
             </div>
           </motion.div>
@@ -144,22 +147,22 @@ const Chatbot = () => {
       {/* Input */}
       <form
         onSubmit={handleFormSubmit}
-        className="flex items-center p-3 sm:p-4 gap-2 border-t bg-white"
+        className="flex items-center p-4 gap-2 border-t bg-white"
       >
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a message..."
-          className="flex-1 border rounded-full px-3 py-2 sm:px-4 sm:py-2 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm sm:text-base"
+          className="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
         />
         <motion.button
           type="submit"
-          className="p-2 sm:p-3 bg-gradient-to-r from-green-400 to-blue-500 rounded-full text-white flex items-center justify-center"
+          className="p-3 bg-gradient-to-r from-green-400 to-blue-500 rounded-full text-white flex items-center justify-center"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
-          <FiSend size={18} className="sm:w-5 sm:h-5" />
+          <FiSend size={20} />
         </motion.button>
       </form>
     </div>

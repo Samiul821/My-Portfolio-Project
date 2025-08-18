@@ -56,7 +56,7 @@ const RootLayout = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
             transition={{ type: "spring", stiffness: 300 }}
-            className="fixed bottom-32 right-8 z-[9999]   rounded-xl overflow-hidden"
+            className="fixed bottom-20 right-2 sm:bottom-32 sm:right-8 z-[9999] w-[95%] sm:w-auto"
           >
             <Chatbot />
           </motion.div>

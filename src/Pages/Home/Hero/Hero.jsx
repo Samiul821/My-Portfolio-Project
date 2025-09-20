@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowRight, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
-import HeroImage from "../../../assets/image (9).png";
+import HeroImage from "../../../assets/WhatsApp Image 2025-09-20 at 17.09.58_e7b07fc8.jpg";
 import MonogoDbPng from "../../../assets/MongoDB.png";
 import NodePng from "../../../assets/Node.js.png";
 import ExpressPng from "../../../assets/Express.png";

@@ -2,7 +2,7 @@ import React from "react";
 import { Motion, spring } from "react-motion";
 import shape1 from "../../../assets/shape1.png";
 import shape2 from "../../../assets/shape2.png";
-import MyImage from "../../../assets/image (9).png";
+import MyImage from "../../../assets/WhatsApp Image 2025-09-20 at 17.09.58_e7b07fc8.jpg";
 
 const AboutMe = () => {
   return (

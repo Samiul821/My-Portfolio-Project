@@ -71,7 +71,7 @@ const Navbar = () => {
       {/* Resume Button - Right */}
       <div className="z-50">
         <a
-          href="https://drive.google.com/file/d/1YqyzltnqPAfhxvNvDR7PGDWaKl9rWgBX/view?usp=sharing"
+          href="https://drive.google.com/file/d/15Ds0Y0Z7HQQWJM2QIj-aXbsA_WardtzH/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="text-white text-[14px] md:text-lg bg-primary px-4 py-2 rounded-full hover:bg-[#27ae60] transition font-medium flex items-center"

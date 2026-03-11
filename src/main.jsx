@@ -14,5 +14,5 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <CustomCursor />
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );

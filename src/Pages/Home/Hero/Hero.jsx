@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowRight, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
-import HeroImage from "../../../assets/Gemini_Generated_Image_fsnn91fsnn91fsnn.png";
+import HeroImage from "../../../assets/Portfolio.jpeg";
 import MonogoDbPng from "../../../assets/MongoDB.png";
 import NodePng from "../../../assets/Node.js.png";
 import ExpressPng from "../../../assets/Express.png";

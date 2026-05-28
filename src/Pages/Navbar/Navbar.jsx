@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, scroller } from "react-scroll";
-import Avatar from "../../assets/50426.jpg";
+import Avatar from "/favicon.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
